@@ -1,11 +1,14 @@
 package com.example.demosecurity.web;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.example.demosecurity.User;
+import com.example.demosecurity.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +40,8 @@ public class DesignTacoController {
   //end::injectingIngredientRepository[]
   private TacoRepository tacoRepo;
 
+  private final UserRepository userRepo;
+
   //end::injectingDesignRepository[]
   /*
   //tag::injectingIngredientRepository[]
@@ -50,9 +55,11 @@ public class DesignTacoController {
   @Autowired
   public DesignTacoController(
         IngredientRepository ingredientRepo,
-        TacoRepository tacoRepo) {
+        TacoRepository tacoRepo,
+        UserRepository userRepo) {
     this.ingredientRepo = ingredientRepo;
     this.tacoRepo = tacoRepo;
+    this.userRepo = userRepo;
   }
 
   @ModelAttribute(name = "order")
@@ -70,7 +77,7 @@ public class DesignTacoController {
   //tag::injectingIngredientRepository[]
 
   @GetMapping
-  public String showDesignForm(Model model) {
+  public String showDesignForm(Model model, Principal principal) {
     List<Ingredient> ingredients = new ArrayList<>();
     ingredientRepo.findAll().forEach(i -> ingredients.add(i));
 
@@ -79,6 +86,10 @@ public class DesignTacoController {
       model.addAttribute(type.toString().toLowerCase(),
           filterByType(ingredients, type));
     }
+
+    String username = principal.getName();
+    User user = userRepo.findByUsername(username);
+    model.addAttribute("user", user);
 
     return "design";
   }
