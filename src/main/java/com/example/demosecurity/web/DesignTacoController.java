@@ -87,6 +87,8 @@ public class DesignTacoController {
           filterByType(ingredients, type));
     }
 
+    model.addAttribute("taco", new Taco());
+
     String username = principal.getName();
     User user = userRepo.findByUsername(username);
     model.addAttribute("user", user);
