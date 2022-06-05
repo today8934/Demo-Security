@@ -1,4 +1,4 @@
-package tacos;
+package com.example.demosecurity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

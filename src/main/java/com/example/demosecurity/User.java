@@ -1,5 +1,7 @@
 package com.example.demosecurity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +14,9 @@ import java.util.Collection;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "USERS")
 public class User implements UserDetails {
 

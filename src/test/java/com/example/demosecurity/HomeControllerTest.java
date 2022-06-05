@@ -1,4 +1,4 @@
-package tacos;
+package com.example.demosecurity;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

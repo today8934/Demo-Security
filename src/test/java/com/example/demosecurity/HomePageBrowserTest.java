@@ -1,4 +1,4 @@
-package tacos;
+package com.example.demosecurity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -41,11 +42,11 @@ public class HomePageBrowserTest {
     
     String titleText = browser.getTitle();
     Assert.assertEquals("Taco Cloud", titleText);
-    
-    String h1Text = browser.findElementByTagName("h1").getText();
+
+    String h1Text = browser.findElement(By.tagName("h1")).getText();
     Assert.assertEquals("Welcome to...", h1Text);
     
-    String imgSrc = browser.findElementByTagName("img")
+    String imgSrc = browser.findElement(By.tagName("img"))
                                               .getAttribute("src");
     Assert.assertEquals(homePage + "/images/TacoCloud.png", imgSrc);
   }
