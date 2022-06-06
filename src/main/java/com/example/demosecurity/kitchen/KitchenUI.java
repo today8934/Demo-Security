@@ -1,9 +1,9 @@
-package tacos.kitchen;
+package com.example.demosecurity.kitchen;
 
+import com.example.demosecurity.Order;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
-import tacos.Order;
 
 @Component
 @Slf4j

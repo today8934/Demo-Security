@@ -1,6 +1,7 @@
 package com.example.demosecurity.messaging;
 
 import com.example.demosecurity.Order;
+import com.example.demosecurity.kitchen.KitchenUI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,6 @@ public class OrderListener {
 
     @RabbitListener(queues = "tacocloud.order.queue")
     public void receiveOrder(Order order) {
-        ui.
+        ui.displayOrder(order);
     }
 }

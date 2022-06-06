@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 public class RabbitOrderMessagingService implements OrderMessagingService{
 
     private final RabbitTemplate rabbit;
-    private final MessageProperties props;
 
     @Override
     public void sendOrder(Order order) {
         MessageConverter converter = rabbit.getMessageConverter();
+        MessageProperties props = new MessageProperties();
         props.setHeader("X_ORDER_SOURCE", "WEB");
         Message message = converter.toMessage(order, props);
         rabbit.send("tacocloud.order", message);
